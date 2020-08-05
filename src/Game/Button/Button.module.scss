@@ -1,4 +1,7 @@
 .button {
   fill: black;
   transition: all ease 0.1s;
+  &.active {
+    fill: red;
+  }
 }

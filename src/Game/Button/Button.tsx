@@ -5,10 +5,23 @@ interface ButtonProps {
     id: number;
     x: number;
     y: number;
+    activeButtonId: number;
 }
 
-export const Button: FunctionComponent<ButtonProps> = ({id, x, y}) => {
+// Button component
+export const Button: FunctionComponent<ButtonProps> = ({id, x, y, activeButtonId}) => {
+    // Workout if button is already active
+    const isActive = id === activeButtonId;
+
+    // function to change class to active
+    const getClass = (): string => {
+        if (isActive) {
+            return ${styles.button} ${styles.active}
+        }
+        return styles.button
+    }
+
     return (
-        <circle className={styles.button} cx={x} cy={y} r={100}/>
+        <circle className={getClass()} cx={x} cy={y} r={100}/>
     );
 };
