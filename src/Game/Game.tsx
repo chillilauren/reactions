@@ -1,11 +1,18 @@
-﻿import React, {FunctionComponent} from "react";
+﻿import React, {FunctionComponent, useState} from "react";
 import styles from "./Game.module.scss";
 import {Board} from "./Board/Board";
 
-export const Game: FunctionComponent = () => {
+interface GameProps {
+    gameScore: number;
+    setGameScore: (newGameScore: number) => void;
+}
+
+export const Game: FunctionComponent<GameProps> = ({gameScore, setGameScore}) => {
+
     return (
         <section className={styles.content}>
-            <Board/>
+            <h2 className="score">SCORE: {gameScore}</h2>
+            <Board gameScore={gameScore} setGameScore={setGameScore}/>
         </section>
     );
 };

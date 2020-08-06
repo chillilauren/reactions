@@ -1,16 +1,25 @@
-import React, {FunctionComponent}, from 'react';
-import React, {useState}, from 'react';
+import React ,{FunctionComponent, useState} from 'react';
 import {Game} from "./Game/Game";
 import styles from "./App.module.scss";
+import { Board } from './Game/Board/Board';
+
 
 export const App: FunctionComponent = () => {
-    // Adding state to activeButtonId
-    const [activeButtonId, setActiveButtonId] = useState(0);
+    // Add state to game score
+    const [gameScore, setGameScore] = useState(0);
 
+    if(gameScore < 5) {
+        return (
+            <main className={styles.main}>
+                <Game gameScore={gameScore} setGameScore={setGameScore}/>
+            </main>
+        );
+    }
     return (
-        <main className={styles.main}>
-            <Game/>
-        </main>
+    <main className={styles.main}>
+        <h1>Game over!</h1>
+        <button onClick={ () => setGameScore(0)}>Start again</button>
+    </main>
     );
+    
 };
-
